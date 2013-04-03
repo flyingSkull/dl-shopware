@@ -1,0 +1,92 @@
+/*	SIDEBAR LEFT
+    ------------------------ */
+#content #left {
+    top: 17px;
+    margin-right: 0px;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 170px;
+    background-color: #FFFFFF;
+    border: 1px dashed #dfdfdf;
+    -moz-box-shadow: 0 -1px 8px #b3a88d;
+}
+
+#content #left .categories li.active {
+    border: 0;
+    width: 170px;
+}
+
+#left .left_categories_shadow {
+    right: 0px;
+    width: 182px;
+    border: none;
+    background: none;
+}
+
+#content #left ul li {
+    border-color: transparent;
+    border-right-style: none;
+    border-right-width: 0px;
+    background-color: transparent;
+}
+
+#content #left ul li a {
+    color: #3e3e3e;
+}
+
+#content #left ul li.active {
+    background-color: transparent;
+    border-color: #f2f2f2;
+}
+
+#content #left ul li.active.sub a.active {
+    border-bottom-color: transparent;
+}
+
+#content #left ul li.active li {
+    background-color: transparent;
+}
+
+#content #left ul li.active li a {
+    color: #474747;
+}
+
+#content #left ul li.active li.active a {
+    color: #e1540f;
+}
+
+#content #left ul li.active li.active li a {
+    color: #797979;
+}
+
+#content #left ul li.active li.active li a.flag {
+    color: #e1540f;
+}
+
+#content #left ul li.active li.active li.active a.flag {
+    color: #797979;
+}
+
+#content #left ul li.active ul.submenu ul, #content #left ul li.active ul.submenu ul.submenu ul.submenu {
+    border-color: transparent;
+}
+
+/** LEVEL 0 **/
+
+#content #left .categories li.active.sub a.active {
+    background-color: #b40700;
+    border: none;
+    color: #fff;
+}
+
+#content #left .categories li a:hover {
+    color: #b40700;
+}
+
+/** LEVEL 1 **/
+#content #left .categories li .submenu {
+    background: none;
+    border-left: none;
+    border-right: none;
+    padding-top: 5px;
+}

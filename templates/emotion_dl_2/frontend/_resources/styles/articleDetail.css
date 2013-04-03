@@ -1,0 +1,155 @@
+/* ARTICLE DETAILS
+	------------------------ */
+
+#content #detail {
+    padding: 10px;
+    margin: 10px;
+    width: 984px;
+    /*    background-color: #ffffff;
+        -moz-box-shadow: 0 -1px 8px #b3a88d;
+        -webkit-box-shadow: 0 -1px 8px #b3a88d;
+        box-shadow: 0 -1px 8px #b3a88d;*/
+}
+
+.ctl_detail #content .inner {
+    width: 100%;
+}
+
+.ctl_detail #content {
+    margin-top: 20px;
+}
+
+.ctl_detail .thumb_box a:hover {
+    border: 1px dashed #e0dcce;
+}
+
+.ctl_detail .thumb_box a.active {
+    border-style: solid;
+    border-color: #e0dcce;
+    opacity: 1
+}
+
+#detail #detailinfo {
+    border-top: 1px #e0dcce dashed;
+    margin-top: 10px;
+}
+
+#detail #detailinfo #description,
+#detail #detailinfo .ui-tabs-panel {
+    padding-top: 30px;
+    padding-left: 0px;
+    width: 560px;
+}
+
+#detail .right {
+    width: 570px;
+}
+
+/* Artikel-switcher */
+
+#detail .article_back {
+    background: url("../images/next/bg-prev.png") no-repeat;
+    width: 25px;
+    float: none;
+    height: 25px;
+    position: absolute;
+    top: 200px;
+    z-index: 10;
+}
+
+#detail .article_next {
+    background: url("../images/next/bg-next.png") no-repeat;
+    width: 25px;
+    float: none;
+    height: 25px;
+    position: absolute;
+    top: 200px;
+    z-index: 10;
+}
+
+#detail .article_back:hover {
+    background-position: 0px 0;
+    opacity: 0.7
+}
+
+#detail .article_next:hover {
+    background-position: 0px 0;
+    opacity: 0.7
+}
+
+#detail .article_back a {
+    background: none
+}
+
+#detail .article_back:hover a {
+    background: none
+}
+
+#detail .article_next a {
+    background: none
+}
+
+#detail .article_next:hover a {
+    background: none
+}
+
+#detailbox h1 {
+    line-height: 26px;
+    border-bottom: 1px dashed #e0dcce;
+    padding-bottom: 10px;
+}
+
+#detail #detailbox #img {
+    width: 273px;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 25px;
+    float: left;
+    padding: 15px;
+    background: #f6f3ea;
+    border: 1px dashed #e0dcce;
+    border-radius: 5px 5px 5px 5px;
+}
+
+#buybox {
+    width: 100%;
+}
+
+#buybox label {
+    width: 70px;
+}
+
+#buybox #detailCartButton {
+    border-top: none;
+    padding-top: 20px;
+}
+
+/* SelectBoxen-Größe */
+#buybox #detailCartButton #sQuantity {
+    width: 87px;
+}
+
+#buybox select {
+    width: 87px;
+}
+
+#buybox .article_details_bottom {
+    margin: 0px 0 0;
+    padding: 0px 0 0px;
+    border-style: none none none;
+}
+
+#buybox #basketButton {
+    width: 175px;
+    margin-top: 0;
+    float: right;
+    box-shadow: 1px 1px 4px #adadad;
+    -moz-box-shadow: 1px 1px 4px #adadad;
+    -webkit-box-shadow: 1px 1px 4px #adadad;
+}
+
+/*	FANCY SELECT
+	-------------------------------------------- */
+body .outer-select {
+    width: 60px;
+}
