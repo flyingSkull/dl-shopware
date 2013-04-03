@@ -44,10 +44,32 @@
 #mainNavigation li.active:hover ul.dropdown {margin-left: 5px;}
 #mainNavigation li.active:hover ul.dropdown {margin-left: 5px; margin-top: 0px;}
 
+#mainNavigation ul li.dropactive:hover ul.dropdown:after,
+#mainNavigation li.active:hover ul.dropdown:after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: -6px;
+    border-width: 0 6px 6px 6px;
+    border-style: solid;
+    border-color: #FFF rgba(0, 0, 0, 0)
+}
+
 #mainNavigation ul li.dropactive:hover ul.dropdown li.sub ul {margin: 0px; border: 0; border-left: 1px solid #333;}
 #mainNavigation ul li.active.dropactive:hover a {background: none; border: 0 none; padding-bottom: 10px;}
 
 
+/*
+content: "";
+width: 0;
+height: 0;
+position: absolute;
+bottom: 100%;
+right: 15px;
+border-width: 0 6px 6px 6px;
+border-style: solid;
+border-color: #fff transparent;
+*/
 /*
 .wrapper-dropdown {
     */
