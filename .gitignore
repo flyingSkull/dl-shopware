@@ -1,0 +1,11 @@
+install/
+cache/
+engine/Shopware/Proxies/
+
+.idea/
+
+# Mac-Stuff
+.DS_Store
+
+
+
