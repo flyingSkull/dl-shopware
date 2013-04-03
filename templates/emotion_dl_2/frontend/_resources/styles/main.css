@@ -184,18 +184,21 @@ div#searchcontainer .inner_searchcontainer {
     ------------------------ */
 
 div#breadcrumb {
-    width: 984px;
     background: none;
     padding: 0;
     padding-left: 10px;
     padding-right: 10px;
-    margin-left: 10px;
+    margin-left: 45px;
     margin-right: 10px;
-    border: none;
+    margin-top: 10px;
+    background: #f6f3ea;
+    border: 1px dashed #e0dcce;
+    border-radius: 5px 5px 5px 5px;
+   /* border: none;
     background-color: #ffffff;
     -moz-box-shadow: 0 -1px 8px #b3a88d;
     -webkit-box-shadow: 0 -1px 8px #b3a88d;
-    box-shadow: 0 -1px 8px #b3a88d;
+    box-shadow: 0 -1px 8px #b3a88d;*/
 }
 
 .container_20 {
@@ -225,9 +228,11 @@ div#breadcrumb {
 }
 
 #center.home {
-    margin-right: 10px;
-    margin-left: 10px;
-    width: 984px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 0px;
+    margin-left: 0px;
+    width: 1004px;
     overflow: hidden;
 }
 
@@ -254,12 +259,15 @@ div#breadcrumb {
 /*	TAGCLOUD
 	------------------------ */
 .tagcloud {
-    background: #ffffff;
+    background: #f6f3ea;
+    border: 1px dashed #e0dcce;
+    border-radius: 5px 5px 5px 5px;
+    /*background: #ffffff;
     border-color: #dfdfdf;
     border-top-color: #ffffff;
     -moz-box-shadow: 0 -1px 8px #b3a88d;
     -webkit-box-shadow: 0 -1px 8px #b3a88d;
-    box-shadow: 0 -1px 8px #b3a88d;
+    box-shadow: 0 -1px 8px #b3a88d;*/
 }
 
 /* ZULETZT ANGESCHAUTE ARTIKEL */
@@ -406,3 +414,7 @@ div#breadcrumb {
     border: 1px dashed #e0dcce;
     border-radius: 5px 5px 5px 5px;
 }
+
+
+.button-right {background: #b40700;}
+.button-right:hover {background: #e0dcce;}
