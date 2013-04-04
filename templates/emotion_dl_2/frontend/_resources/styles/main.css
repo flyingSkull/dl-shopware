@@ -77,7 +77,6 @@ body .my_options a, .my_options .service {
     margin: 0 auto;
     position: fixed;
     z-index: 50;
-    /*background: transparent url(../images/next/bg-header.png) scroll top left repeat-x;*/
 }
 
 /** Header */
@@ -88,11 +87,6 @@ body .my_options a, .my_options .service {
     border-bottom: 1px #49483e dashed;
     background: #fffef4 url(../images/bg-wood.jpg) scroll top left repeat-x;
 }
-
-/*
-#header #logo {margin: 0;}
-#header #logo a {background: url(../images/dl_logo_2.png) no-repeat;width: 286px; height: 44px;margin: 40px 0 0;}
-*/
 
 #header .inner {
     width: 1024px;
@@ -110,8 +104,6 @@ body .my_options a, .my_options .service {
     height: 175px;
     margin: 0 0 0 0;
     background: url(../images/next/logo_badge.png);
-    /*    -webkit-transform: rotate(350deg);
-        -ms-transform: rotate(350deg);*/
 }
 
 #shopnavi {
@@ -214,7 +206,7 @@ div#breadcrumb {
 }
 
 #center {
-    width: 794px;
+    width: 802px;
     /*background: #fff;*/
     padding-left: 10px;
     padding-right: 10px;
@@ -267,12 +259,6 @@ div#breadcrumb {
     background: #fff;
     border: 1px dashed #e0dcce;
     border-radius: 5px 5px 5px 5px;
-    /*background: #ffffff;
-    border-color: #dfdfdf;
-    border-top-color: #ffffff;
-    -moz-box-shadow: 0 -1px 8px #b3a88d;
-    -webkit-box-shadow: 0 -1px 8px #b3a88d;
-    box-shadow: 0 -1px 8px #b3a88d;*/
 }
 
 /* ZULETZT ANGESCHAUTE ARTIKEL */
@@ -289,11 +275,6 @@ div#breadcrumb {
     background: #f6f3ea;
     border: 1px dashed #e0dcce;
     border-radius: 5px 5px 5px 5px;
-
-    /*background: #fff;
-    -moz-box-shadow: 0 -1px 8px #b3a88d;
-    -webkit-box-shadow: 0 -1px 8px #b3a88d;
-    box-shadow: 0 -1px 8px #b3a88d;*/
 }
 
 .viewlast .article_description {
@@ -423,3 +404,25 @@ div#breadcrumb {
 
 .button-right {background: #b40700;}
 .button-right:hover {background: #e0dcce;}
+
+/* category teaser */
+.emotion-listing .teaser_box {
+    background: #ffffff;
+    border: 1px dashed #e0dcce;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.emotion-listing .teaser_box .teaser_headline {
+    height: 35px;
+    margin: 0;
+    width: 100%;
+    background: #f6f3ea;
+    position: absolute;
+    bottom: 0;
+}
+
+.emotion-listing .teaser_box .teaser_headline h3 {
+    color: #000;
+    line-height: 35px;
+    padding-left: 10px;
+}
