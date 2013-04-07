@@ -1,0 +1,10 @@
+DELETE FROM `usr_p159946_3`.`s_core_templates` WHERE `s_core_templates`.`id` = 4;
+DELETE FROM `usr_p159946_3`.`s_core_templates` WHERE `s_core_templates`.`id` = 11;
+DELETE FROM `usr_p159946_3`.`s_core_templates` WHERE `s_core_templates`.`id` = 14;
+DELETE FROM `usr_p159946_3`.`s_core_templates` WHERE `s_core_templates`.`id` = 15;
+DELETE FROM `usr_p159946_3`.`s_core_templates` WHERE `s_core_templates`.`id` = 16;
+DELETE FROM `usr_p159946_3`.`s_core_templates` WHERE `s_core_templates`.`id` = 17;
+DELETE FROM `usr_p159946_3`.`s_core_templates` WHERE `s_core_templates`.`id` = 18;
+DELETE FROM `usr_p159946_3`.`s_core_templates` WHERE `s_core_templates`.`id` = 19;
+DELETE FROM `usr_p159946_3`.`s_core_templates` WHERE `s_core_templates`.`id` = 20;
+DELETE FROM `usr_p159946_3`.`s_core_templates` WHERE `s_core_templates`.`id` = 21;
