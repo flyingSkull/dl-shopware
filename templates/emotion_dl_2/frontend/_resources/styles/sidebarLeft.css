@@ -90,3 +90,10 @@
     border-right: none;
     padding-top: 5px;
 }
+
+/** FILTER **/
+#content #left  .headingbox_nobg.filter_properties {border: none; background: #fff;}
+
+div.supplier_filter, div#hersteller_filter span {background: none; border: none;}
+#content #left .filter_properties .supplier_filter {width: 170px;}
+#content #left .filter_properties .supplier_filter div {border:none;width:160px;}

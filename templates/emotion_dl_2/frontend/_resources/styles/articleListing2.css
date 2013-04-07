@@ -36,7 +36,7 @@ div.listing {
 
 .artbox {
     width: 194px;
-    height: 230px;
+    height: 270px;
     background: #ffffff;
     border: 1px dashed #e0dcce;
     border-radius: 5px 5px 5px 5px;
@@ -55,8 +55,8 @@ div.listing {
 .artbox img {
     display: block;
     position: relative;
-    height: 220px;
-    width: 182px;
+/*    height: 220px;
+    width: 182px;*/
     transition: all 0.2s linear;
     -moz-transition: all 0.2s linear;
     -webkit-transition: all 0.2s linear;
@@ -98,7 +98,7 @@ div.listing {
 
 .artbox .mask {
     width: 194px;
-    height: 221px;
+    height: 260px;
     position: absolute;
     border-radius: 5px 5px 5px 5px;
     top:5px;
