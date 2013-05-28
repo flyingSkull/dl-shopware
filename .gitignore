@@ -1,6 +1,13 @@
-install/
+### Ordner ###
+
+#sql/
 cache/
 engine/Shopware/Proxies/
+media/image/
+
+### Dateien ###
+
+config.php
 
 .idea/
 
