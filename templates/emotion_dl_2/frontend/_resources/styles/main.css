@@ -153,9 +153,9 @@ body .my_options a, .my_options .service {
 div#searchcontainer {
     position: absolute;
     right: 0px;
-    left: 740px;
+    left: 730px;
     top: 170px;
-    background: transparent;
+    background: rgba(0, 0, 0, 0);
 }
 
 div#searchcontainer .inner_searchcontainer {
@@ -425,4 +425,65 @@ div#breadcrumb {
     color: #000;
     line-height: 35px;
     padding-left: 10px;
+}
+
+/* Modal-PopUp */
+.modal {
+    margin: 0px;
+    background: #F6F3EA;
+    border: 1px dashed #E0DCCE;
+    border-radius: 5px 5px 5px 5px;
+}
+
+div.ajax_add_article {
+    background: none;
+}
+
+div.ajax_add_article .article_box, div.ajax_add_article .bottom {
+    background: none;
+}
+
+div.ajax_login_form .heading, .modal .heading, .ajax_compare_container .heading, .ajax_compare_max_container .heading, .ajax_modal_custom .heading {
+    border-bottom: 2px dashed #E0DCCE;
+}
+
+div.ajax_login_form fieldset {
+    background: none;
+}
+
+div.ajax_add_article, div.ajax_login_form .existing_customer {
+    background: none;
+}
+
+div.ajax_login_form .existing_customer {
+    border-top: 2px dashed #E0DCCE;
+}
+
+div.ajax_login_form .heading .modal_close, .modal .heading .modal_close, .ajax_compare_container .heading .modal_close, .ajax_compare_max_container .heading .modalClose, .ajax_modal_custom .heading .modalClose {
+    display: block;
+    /*background: url(../images/icons/ico_modal-close.png) no-repeat;*/
+    width: 24px;
+    height: 21px;
+    text-indent: -9999px;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+}
+
+div.ajax_login_form .heading .modal_close:active, .modal .heading .modal_close:active {
+    top: -10px;
+}
+
+div.ajax_add_article .article_box .price {
+    font-size: 16px;
+    font-weight: 700;
+    position: absolute;
+    top: 15px;
+    left: 570px;
+}
+
+div.ajax_add_article .article_box .quantity {
+    position: absolute;
+    top: 40px;
+    left: 570px;
 }

@@ -39,10 +39,10 @@
 #mainNavigation ul li.dropactive:hover ul.dropdown li.sub ul li a:hover {background: #333333; color: #fff;}
 
 #mainNavigation li:hover ul.dropdown, #mainNavigation li:hover ul.droplevel {background-color: #fff; border: none; border-radius: 5px 5px 5px 5px;  -moz-box-shadow: 0 -1px 8px #b3a88d; -webkit-box-shadow: 0 -1px 8px #b3a88d; box-shadow: 0 -1px 8px #b3a88d;}
-#mainNavigation li:hover ul.dropdown, #mainNavigation li:hover ul.droplevel {margin-left: 6px; margin-top: 20px; width: 200px;}
+#mainNavigation li:hover ul.dropdown, #mainNavigation li:hover ul.droplevel {margin-left: 6px; margin-top: 10px; width: 200px; padding: 10px;}
 
-#mainNavigation li.active:hover ul.dropdown {margin-left: 5px;}
-#mainNavigation li.active:hover ul.dropdown {margin-left: 5px; margin-top: 0px;}
+/*#mainNavigation li.active:hover ul.dropdown {margin-left: 5px;}*/
+#mainNavigation li.active:hover ul.dropdown {margin-left: 5px; margin-top: 0px; padding: 10px;}
 
 #mainNavigation ul li.dropactive:hover ul.dropdown:after,
 #mainNavigation li.active:hover ul.dropdown:after {
