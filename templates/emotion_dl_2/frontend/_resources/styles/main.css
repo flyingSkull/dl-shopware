@@ -487,3 +487,34 @@ div.ajax_add_article .article_box .quantity {
     top: 40px;
     left: 570px;
 }
+
+/*Notes*/
+#content .cat_text .inner_container, #content .register .supplier_register .inner_container {
+    background: #F6F3EA;
+    border: 1px dashed #E0DCCE;
+    border-radius: 5px 5px 5px 5px;
+    padding: 20px 20px 0;
+    margin: 0;
+    margin: 0 0 0;
+}
+
+/*viewlast*/
+.viewlast .article_image, #detail #detailinfo .similar .artbox .artbox_thumb {
+    border-radius: 5px;
+    box-shadow: none;
+    border-color: #DFDFDF;
+    text-indent: -9999em;
+}
+
+.viewlast .heading {
+    padding: 0;
+}
+
+#content .custom {
+    width: 780px;
+    margin: 0 20px 0 20px;
+}
+
+div.ajax_login_form .new_customer p, div.ajax_login_form .existing_customer p, #detail #detailinfo #description p, #content .custom p, #content .cat_text p {
+    text-align: justify;
+}
