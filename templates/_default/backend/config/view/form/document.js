@@ -144,12 +144,10 @@ Ext.define('Shopware.apps.Config.view.form.Document', {
 					width: 150,
 					iconCls: 'sprite-document-pdf',
 					handler: function(){
-						var id = me.down('grid').getSelectionModel().getSelection()[0].get('id');
-
 						var detailPanel = me.down('config-base-detail'),
 							values = detailPanel.getValues();
 						var previewPageBreak = values['booleanPageBreak'] ? '&pagebreak=on' : '';
-						window.open('{url controller=document}?typ=' + id + '&preview=1&sampleData=1' + previewPageBreak);
+						window.open('{url controller=document}?typ=' + values.id + '&preview=1&sampleData=1' + previewPageBreak);
 					}
 				},{
 					xtype: 'config-element-button',
@@ -195,13 +193,22 @@ Ext.define('Shopware.apps.Config.view.form.Document', {
 						values = detailPanel.getValues(),
 						id = values['id'];
 
-					Ext.Ajax.request({
-						url: '{url controller="Document" action="duplicateProperties"}',
-						params: {
-							id: id
-						},
-						scope:this
-					});
+                    Ext.MessageBox.confirm(
+                        '{s name=document/detail/applyconfig_label}Use the element-config for all forms{/s}',
+                        '{s name=document/detail/applyconfig_config_confirm_message}Are you sure you want to take over the properties for all types of documents?{/s}',
+                        function (response) {
+                            if (response !== 'yes') {
+                                return false;
+                            }
+                            Ext.Ajax.request({
+                                url: '{url controller="Document" action="duplicateProperties"}',
+                                params: {
+                                    id: id
+                                },
+                                scope: this
+                            });
+                        }
+                    );
 				}
 			},{
 				xtype: 'combo',

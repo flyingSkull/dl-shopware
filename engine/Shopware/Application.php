@@ -34,9 +34,9 @@
  */
 class Shopware extends Enlight_Application
 {
-    const VERSION      = '4.0.7';
+    const VERSION      = '4.0.8';
     const VERSION_TEXT = '';
-    const REVISION     = '20130313';
+    const REVISION     = '20130514';
 
     protected $app     = 'Shopware';
     protected $appPath = 'engine/Shopware/';
