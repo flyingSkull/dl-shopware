@@ -10,6 +10,7 @@ media/
 
 # Dateien
 .htaccess
+.htpasswd.mittwald
 
 # Mac-Stuff
 .DS_Store
