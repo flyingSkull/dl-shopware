@@ -61,9 +61,9 @@
 
 {* Listing actions bottom *}
 {block name="frontend_listing_bottom_paging"}
-{*    {if $showListing}
+    {if $showListing}
         {$smarty.block.parent}
-    {/if}*}
+    {/if}
 {/block}
 
 {* Category text *}

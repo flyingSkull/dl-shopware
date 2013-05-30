@@ -21,7 +21,7 @@ body {
     /*background-image: url("../images/next/fond.jpg");*/
     /*background: #fffef4 url('../images/next/bg_3.png') repeat;*/
     min-width: 1024px;
-    background: #fffef4 url('../images/next/bg-content.jpg') repeat;
+    background: #fffef4 url('../images/bg/bg-content.jpg') repeat;
 }
 
 body .my_options a, .my_options .service {
@@ -76,7 +76,7 @@ body .my_options a, .my_options .service {
 .my_options a:hover span,
 .my_options a:hover,
 .my_options .service span:hover {
-    color: #b40700 !important;
+    color: #e54a4a !important;
     text-decoration: none;
 }
 
@@ -94,7 +94,7 @@ body .my_options a, .my_options .service {
     height: 150px;
 
     border-bottom: 1px #49483e dashed;
-    background: #fffef4 url(../images/bg-wood.jpg) scroll top left repeat-x;
+    background: #fffef4 url(../images/header/brown-bg.jpg) scroll top left repeat-x;
 }
 
 #header .inner {
@@ -128,7 +128,7 @@ body .my_options a, .my_options .service {
     position: static;
     top: auto;
     right: 0;
-    background: #b40700 url("../images/cart_icon_small.png") no-repeat center center;
+    background: #e54a4a url("../images/cart_icon_small.png") no-repeat center center;
     height: 46px;
     margin: 0;
     width: 50px;
@@ -309,7 +309,7 @@ div#breadcrumb {
 
 #footer_wrapper {
     background-color: #333541;
-    background-image: url("../images/bg-wood.jpg");
+    background-image: url("../images/header/brown-bg.jpg");
     border-top: none;
 }
 
@@ -335,7 +335,7 @@ div#breadcrumb {
 }
 
 #footer_wrapper .footer_inner #footer a:hover {
-    color: #b40700;
+    color: #e54a4a;
     font-weight: 900
 }
 
@@ -404,7 +404,7 @@ div#breadcrumb {
 }
 
 #content .headingbox_dark {
-    color: #b40700;
+    color: #e54a4a;
 }
 
 .tellafriend fieldset {
@@ -414,7 +414,7 @@ div#breadcrumb {
 }
 
 .button-right {
-    background: #b40700;
+    background: #e54a4a;
 }
 
 .button-right:hover {

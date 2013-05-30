@@ -90,19 +90,19 @@
 /** LEVEL 0 **/
 
 #content #left .categories li.active.sub a.active {
-    background-color: #c62860;
+    background-color: #e54a4a;
     border: none;
     color: #fff;
 }
 
 #content #left .categories li a:hover {
-    color: #c62860;
+    color: #e54a4a;
     font-weight: 700;
 }
 
 #content #left .categories li.active li.active a.flag {
     border: 0px none;
-    color: #c62860;
+    color: #e54a4a;
 }
 
 /** LEVEL 1 **/
