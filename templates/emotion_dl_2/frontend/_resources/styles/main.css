@@ -1,12 +1,21 @@
 /** Background image */
 
-@import url(http://fonts.googleapis.com/css?family=Nobile);
+/*@import url(http://fonts.googleapis.com/css?family=Nobile);*/
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+/*html {
+    background: #fffef4 url('../images/next/bg-white-dots.png') repeat;
+}*/
 
 html {
-    /*background: #fffef4 url('../images/next/bg-white-dots.png') repeat;*/
+    font: 12px/1.3em Arial, "Helvetica Neue", Helvetica, sans-serif;
+    padding-top: 0px;
 }
 
 body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+    font-style: normal;
     /*font-family: 'Nobile', sans-serif;*/
     /*background: url("../images/next/bg_1.png") repeat;*/
     /*background-image: url("../images/next/fond.jpg");*/
@@ -83,7 +92,7 @@ body .my_options a, .my_options .service {
 #header {
     width: 100%;
     height: 150px;
-    float: left;
+
     border-bottom: 1px #49483e dashed;
     background: #fffef4 url(../images/bg-wood.jpg) scroll top left repeat-x;
 }
@@ -186,11 +195,11 @@ div#breadcrumb {
     background: #f6f3ea;
     border: 1px dashed #e0dcce;
     border-radius: 5px 5px 5px 5px;
-   /* border: none;
-    background-color: #ffffff;
-    -moz-box-shadow: 0 -1px 8px #b3a88d;
-    -webkit-box-shadow: 0 -1px 8px #b3a88d;
-    box-shadow: 0 -1px 8px #b3a88d;*/
+    /* border: none;
+     background-color: #ffffff;
+     -moz-box-shadow: 0 -1px 8px #b3a88d;
+     -webkit-box-shadow: 0 -1px 8px #b3a88d;
+     box-shadow: 0 -1px 8px #b3a88d;*/
 }
 
 .container_20 {
@@ -324,6 +333,7 @@ div#breadcrumb {
 #footer_wrapper .footer_inner #footer a {
     text-decoration: none;
 }
+
 #footer_wrapper .footer_inner #footer a:hover {
     color: #b40700;
     font-weight: 900
@@ -365,6 +375,7 @@ div#breadcrumb {
 #footer .footer_menu .col3 {
     width: 150px;
 }
+
 #footer .footer_menu .last {
     border-right: 0;
     width: 220px;
@@ -391,6 +402,7 @@ div#breadcrumb {
     border-radius: 5px 5px 5px 5px;
     margin-bottom: 10px !important;
 }
+
 #content .headingbox_dark {
     color: #b40700;
 }
@@ -401,9 +413,13 @@ div#breadcrumb {
     border-radius: 5px 5px 5px 5px;
 }
 
+.button-right {
+    background: #b40700;
+}
 
-.button-right {background: #b40700;}
-.button-right:hover {background: #e0dcce;}
+.button-right:hover {
+    background: #e0dcce;
+}
 
 /* category teaser */
 .emotion-listing .teaser_box {

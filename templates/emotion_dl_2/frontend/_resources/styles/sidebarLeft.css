@@ -6,14 +6,30 @@
     margin-left: 10px;
     margin-top: 10px;
     width: 170px;
-    background-color: #FFFFFF;
-    border: 1px dashed #dfdfdf;
-    -moz-box-shadow: 0 -1px 8px #b3a88d;
+    /*background-color: #FFFFFF;*/
+    /*border: 1px dashed #dfdfdf;*/
+    /*-moz-box-shadow: 0 -1px 8px #b3a88d;*/
 }
 
 #content #left .categories li.active {
     border: 0;
     width: 170px;
+}
+
+#content #left .categories li .submenu li {
+    background-color: #ffffff;
+    border: 0px none;
+    width: 170px;
+    margin-bottom: 5px;
+
+    -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    -moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+
+#content #left .categories li .submenu li a {
+    padding: 5px 0px 5px 20px;
 }
 
 #left .left_categories_shadow {
@@ -32,11 +48,11 @@
 
 #content #left ul li a {
     color: #3e3e3e;
+    font-size: 12px;
 }
 
 #content #left ul li.active {
-    background-color: transparent;
-    border-color: #f2f2f2;
+    /*background-color: #9e1847;*/
 }
 
 #content #left ul li.active.sub a.active {
@@ -74,13 +90,19 @@
 /** LEVEL 0 **/
 
 #content #left .categories li.active.sub a.active {
-    background-color: #b40700;
+    background-color: #c62860;
     border: none;
     color: #fff;
 }
 
 #content #left .categories li a:hover {
-    color: #b40700;
+    color: #c62860;
+    font-weight: 700;
+}
+
+#content #left .categories li.active li.active a.flag {
+    border: 0px none;
+    color: #c62860;
 }
 
 /** LEVEL 1 **/
