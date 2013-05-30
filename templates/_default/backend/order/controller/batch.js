@@ -48,6 +48,7 @@ Ext.define('Shopware.apps.Order.controller.Batch', {
     * all references to get the elements by the applicable selector
     */
     refs:[
+        { ref:'orderListGrid', selector:'order-list-main-window order-list' },
         { ref:'batchWindow', selector:'order-batch-window' },
         { ref:'batchList', selector:'order-batch-window batch-list' },
         { ref:'mailPanel', selector:'order-batch-window batch-mail-panel' },
@@ -69,6 +70,7 @@ Ext.define('Shopware.apps.Order.controller.Batch', {
             title: '{s name=done_title}Document creation{/s}'
         },
         cancel: {
+            brokenOrderMessage: '{s name=broken_order_message}Document creation cancelled. The Order [0] contains inconsistent data{/s}',
             message: '{s name=cancel_message}Document creation cancelled{/s}',
             title: '{s name=cancel_title}Cancelled{/s}'
         },
@@ -167,13 +169,13 @@ Ext.define('Shopware.apps.Order.controller.Batch', {
             grid = window.down('batch-list');
 
         if (activeItem.layout === 'easy') {
-            window.setSize(530, 460);
+            window.setSize(530, '90%');
             formPanel.removeCls('layout-expert');
             formPanel.addCls('layout-easy');
             grid.hide();
             mailPanel.hide();
         } else {
-            window.setSize(970, 600);
+            window.setSize(970, '90%');
             formPanel.removeCls('layout-easy');
             formPanel.addCls('layout-expert');
             grid.show();
@@ -244,11 +246,16 @@ Ext.define('Shopware.apps.Order.controller.Batch', {
             store.add(orders);
             store.sync({
                 callback: function(batch) {
-                    var resultSet = batch.operations[0].resultSet.records;
+                    var orderListGrid = me.getOrderListGrid(),
+                        gridStore = orderListGrid.getStore(),
+                        resultSet = batch.operations[0].resultSet.records;
+
                     store.removeAll();
                     store.add(resultSet);
                     grid.setLoading(false);
                     grid.reconfigure(store);
+
+                    gridStore.load();
                 }
             });
         }
@@ -262,6 +269,9 @@ Ext.define('Shopware.apps.Order.controller.Batch', {
      *
      * @param orders
      * @param index
+     * @param progressBar
+     * @param store
+     * @param resultStore
      */
     queueProcess: function(store, progressBar, orders, index, resultStore) {
         var me = this,
@@ -313,6 +323,14 @@ Ext.define('Shopware.apps.Order.controller.Batch', {
             store.add(orders[index]);
             store.sync({
                 callback: function(batch) {
+                    if(batch.operations[0].resultSet === Ext.undefined || batch.operations[0].resultSet.records === Ext.undefined) {
+                        //update progress bar and display finish message
+                        var brokenOrderMessage = Ext.String.format(me.snippets.cancel.brokenOrderMessage, orders[index].data.number);
+                        progressBar.updateProgress(1, brokenOrderMessage, true);
+                        me.refreshProgressWindow(orders);
+
+                        return false;
+                    }
                     // add the resulting record to our result store
                     var resultSet = batch.operations[0].resultSet.records;
                     resultStore.add(resultSet);

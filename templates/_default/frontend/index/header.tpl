@@ -55,12 +55,6 @@
     <script src="{link file='frontend/_resources/javascript/jquery-1.7.2.min.js'}"></script>
 {/block}
 
-{block name="frontend_index_header_javascript_hammerjs_lib"}
-
-    {* Include hammer.js for touch events in jQuery *}
-    <script src="{link file='frontend/_resources/javascript/plugins/touchy/jquery.touchy.min.js'}"></script>
-{/block}
-
 {block name="frontend_index_header_javascript"}
 	<script type="text/javascript">
 	//<![CDATA[
@@ -69,6 +63,7 @@
 
 		jQuery.controller =  {ldelim}
             'vat_check_enabled': '{config name='vatcheckendabled'}',
+            'vat_check_required': '{config name='vatcheckrequired'}',
 			'ajax_cart': '{url controller="checkout"}',
 			'ajax_search': '{url controller="ajax_search"}',
 			'ajax_login': '{url controller="account" action="ajax_login"}',

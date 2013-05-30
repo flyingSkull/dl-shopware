@@ -1,9 +1,17 @@
+
 # Folder
 install/
 cache/
 engine/Shopware/Proxies/
 media/
 
+#sql/
+cache/
+engine/Shopware/Proxies/
+media/image/
+
+### Dateien ###
+config.php
 
 # PHP-Storm
 .idea/

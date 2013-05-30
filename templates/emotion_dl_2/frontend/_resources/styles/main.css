@@ -1,12 +1,21 @@
 /** Background image */
 
-@import url(http://fonts.googleapis.com/css?family=Nobile);
+/*@import url(http://fonts.googleapis.com/css?family=Nobile);*/
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+/*html {
+    background: #fffef4 url('../images/next/bg-white-dots.png') repeat;
+}*/
 
 html {
-    /*background: #fffef4 url('../images/next/bg-white-dots.png') repeat;*/
+    font: 12px/1.3em Arial, "Helvetica Neue", Helvetica, sans-serif;
+    padding-top: 0px;
 }
 
 body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+    font-style: normal;
     /*font-family: 'Nobile', sans-serif;*/
     /*background: url("../images/next/bg_1.png") repeat;*/
     /*background-image: url("../images/next/fond.jpg");*/
@@ -83,7 +92,7 @@ body .my_options a, .my_options .service {
 #header {
     width: 100%;
     height: 150px;
-    float: left;
+
     border-bottom: 1px #49483e dashed;
     background: #fffef4 url(../images/bg-wood.jpg) scroll top left repeat-x;
 }
@@ -153,9 +162,9 @@ body .my_options a, .my_options .service {
 div#searchcontainer {
     position: absolute;
     right: 0px;
-    left: 740px;
+    left: 730px;
     top: 170px;
-    background: transparent;
+    background: rgba(0, 0, 0, 0);
 }
 
 div#searchcontainer .inner_searchcontainer {
@@ -186,11 +195,11 @@ div#breadcrumb {
     background: #f6f3ea;
     border: 1px dashed #e0dcce;
     border-radius: 5px 5px 5px 5px;
-   /* border: none;
-    background-color: #ffffff;
-    -moz-box-shadow: 0 -1px 8px #b3a88d;
-    -webkit-box-shadow: 0 -1px 8px #b3a88d;
-    box-shadow: 0 -1px 8px #b3a88d;*/
+    /* border: none;
+     background-color: #ffffff;
+     -moz-box-shadow: 0 -1px 8px #b3a88d;
+     -webkit-box-shadow: 0 -1px 8px #b3a88d;
+     box-shadow: 0 -1px 8px #b3a88d;*/
 }
 
 .container_20 {
@@ -324,6 +333,7 @@ div#breadcrumb {
 #footer_wrapper .footer_inner #footer a {
     text-decoration: none;
 }
+
 #footer_wrapper .footer_inner #footer a:hover {
     color: #b40700;
     font-weight: 900
@@ -365,6 +375,7 @@ div#breadcrumb {
 #footer .footer_menu .col3 {
     width: 150px;
 }
+
 #footer .footer_menu .last {
     border-right: 0;
     width: 220px;
@@ -391,6 +402,7 @@ div#breadcrumb {
     border-radius: 5px 5px 5px 5px;
     margin-bottom: 10px !important;
 }
+
 #content .headingbox_dark {
     color: #b40700;
 }
@@ -401,9 +413,13 @@ div#breadcrumb {
     border-radius: 5px 5px 5px 5px;
 }
 
+.button-right {
+    background: #b40700;
+}
 
-.button-right {background: #b40700;}
-.button-right:hover {background: #e0dcce;}
+.button-right:hover {
+    background: #e0dcce;
+}
 
 /* category teaser */
 .emotion-listing .teaser_box {
@@ -425,4 +441,96 @@ div#breadcrumb {
     color: #000;
     line-height: 35px;
     padding-left: 10px;
+}
+
+/* Modal-PopUp */
+.modal {
+    margin: 0px;
+    background: #F6F3EA;
+    border: 1px dashed #E0DCCE;
+    border-radius: 5px 5px 5px 5px;
+}
+
+div.ajax_add_article {
+    background: none;
+}
+
+div.ajax_add_article .article_box, div.ajax_add_article .bottom {
+    background: none;
+}
+
+div.ajax_login_form .heading, .modal .heading, .ajax_compare_container .heading, .ajax_compare_max_container .heading, .ajax_modal_custom .heading {
+    border-bottom: 2px dashed #E0DCCE;
+}
+
+div.ajax_login_form fieldset {
+    background: none;
+}
+
+div.ajax_add_article, div.ajax_login_form .existing_customer {
+    background: none;
+}
+
+div.ajax_login_form .existing_customer {
+    border-top: 2px dashed #E0DCCE;
+}
+
+div.ajax_login_form .heading .modal_close, .modal .heading .modal_close, .ajax_compare_container .heading .modal_close, .ajax_compare_max_container .heading .modalClose, .ajax_modal_custom .heading .modalClose {
+    display: block;
+    /*background: url(../images/icons/ico_modal-close.png) no-repeat;*/
+    width: 24px;
+    height: 21px;
+    text-indent: -9999px;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+}
+
+div.ajax_login_form .heading .modal_close:active, .modal .heading .modal_close:active {
+    top: -10px;
+}
+
+div.ajax_add_article .article_box .price {
+    font-size: 16px;
+    font-weight: 700;
+    position: absolute;
+    top: 15px;
+    left: 570px;
+}
+
+div.ajax_add_article .article_box .quantity {
+    position: absolute;
+    top: 40px;
+    left: 570px;
+}
+
+/*Notes*/
+#content .cat_text .inner_container, #content .register .supplier_register .inner_container {
+    background: #F6F3EA;
+    border: 1px dashed #E0DCCE;
+    border-radius: 5px 5px 5px 5px;
+    padding: 20px 20px 0;
+    margin: 0;
+    margin: 0 0 0;
+}
+
+/*viewlast*/
+.viewlast .article_image, #detail #detailinfo .similar .artbox .artbox_thumb {
+    border-radius: 5px;
+    box-shadow: none;
+    border-color: #DFDFDF;
+    text-indent: -9999em;
+}
+
+.viewlast .heading {
+    padding: 0;
+}
+
+#content .custom {
+    width: 780px;
+    margin: 0 20px 0 20px;
+}
+
+div.ajax_login_form .new_customer p, div.ajax_login_form .existing_customer p, #detail #detailinfo #description p, #content .custom p, #content .cat_text p {
+    text-align: justify;
 }
