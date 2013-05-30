@@ -1,8 +1,15 @@
+# Folder
 install/
 cache/
 engine/Shopware/Proxies/
+media/
 
+
+# PHP-Storm
 .idea/
+
+# Dateien
+.htaccess
 
 # Mac-Stuff
 .DS_Store
