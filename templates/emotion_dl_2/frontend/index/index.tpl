@@ -69,51 +69,54 @@
         {/block}
 
     </div>
+
 </div>
+
+<div id="header-bottom"></div>
 
 <div id="wrapper">
     <div class="wrap_top"></div>
-<div class="wrap_inner">
+    <div class="wrap_inner">
 
-{/block}
-
-    <div class="container_20">
-    {* Breadcrumb *}
-    {block name='frontend_index_breadcrumb'}
-        {*{include file='frontend/index/breadcrumb.tpl'}*}
     {/block}
 
-    {* Content section *}
-        <div id="content">
-            <div class="inner">
+        <div class="container_20">
+        {* Breadcrumb *}
+        {block name='frontend_index_breadcrumb'}
+            {*{include file='frontend/index/breadcrumb.tpl'}*}
+        {/block}
 
-            {* Content top container *}
-            {block name="frontend_index_content_top"}{/block}
+        {* Content section *}
+            <div id="content">
+                <div class="inner">
 
-            {* Sidebar left *}
-            {block name='frontend_index_content_left'}
-                {include file='frontend/index/left.tpl'}
-            {/block}
+                {* Content top container *}
+                {block name="frontend_index_content_top"}{/block}
 
-            {* Main content *}
-            {block name='frontend_index_content'}{/block}
+                {* Sidebar left *}
+                {block name='frontend_index_content_left'}
+                    {include file='frontend/index/left.tpl'}
+                {/block}
 
-            {* Sidebar right *}
-            {block name='frontend_index_content_right'}{/block}
+                {* Main content *}
+                {block name='frontend_index_content'}{/block}
 
-                <div class="clear">&nbsp;</div>
+                {* Sidebar right *}
+                {block name='frontend_index_content_right'}{/block}
+
+                    <div class="clear">&nbsp;</div>
+                </div>
             </div>
+        {* Footer *}
+        {block name="frontend_index_footer"}
+            {if $sLastArticlesShow}
+                {action module=widgets controller=lastArticles}
+            {/if}
+        {/block}
         </div>
-    {* Footer *}
-    {block name="frontend_index_footer"}
-        {if $sLastArticlesShow}
-            {action module=widgets controller=lastArticles}
-        {/if}
-    {/block}
-    </div>
 
-{block name="frontend_index_shopware_footer"}
-</div>
+    {block name="frontend_index_shopware_footer"}
+    </div>
     <div class="wrap_cap"></div>
 </div>
 
