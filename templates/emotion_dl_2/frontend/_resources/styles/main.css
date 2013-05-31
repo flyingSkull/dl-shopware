@@ -434,7 +434,7 @@ div#breadcrumb {
 }
 
 .button-right:hover {
-    background: #e0dcce;
+    font-weight: 700;
 }
 
 /* category teaser */
