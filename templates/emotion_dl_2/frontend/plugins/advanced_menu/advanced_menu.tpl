@@ -20,7 +20,7 @@
 	<ul>
 	    {foreach from=$sAdvancedMenu item=sCategory}
             {if !$sCategory.hidetop}
-			<li class="{if !empty($sCategory.flag)}active{/if}{if $sCategory.sub} dropactive{/if}">
+			<li class="{if $sCategory.description=="Weiblein"}w{else}m{/if}{if !empty($sCategory.flag)} active{/if}{if $sCategory.sub} dropactive{/if}">
 
 	        	<a href="{$sCategory.link}" title="{$sCategory.description}" {if !empty($sCategory.flag)} class="active"{/if}>
 	        		<span>{$sCategory.description}</span>

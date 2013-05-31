@@ -21,7 +21,7 @@ body {
     /*background-image: url("../images/next/fond.jpg");*/
     /*background: #fffef4 url('../images/next/bg_3.png') repeat;*/
     min-width: 1024px;
-    background: #fffef4 url('../images/bg/bg-content.jpg') repeat;
+    background: #fffef4 url('../images/design2/headcontainerbg.png') repeat;
 }
 
 body .my_options a, .my_options .service {
@@ -94,7 +94,7 @@ body .my_options a, .my_options .service {
     height: 150px;
 
     border-bottom: 1px #49483e dashed;
-    background: #fffef4 url(../images/header/brown-bg.jpg) scroll top left repeat-x;
+    background: #fffef4 url(../images/design2/headcontainerbg.png) scroll top left repeat-x;
 }
 
 #header .inner {
@@ -309,7 +309,7 @@ div#breadcrumb {
 
 #footer_wrapper {
     background-color: #333541;
-    background-image: url("../images/header/brown-bg.jpg");
+    background-image: url("../images/design2/plank.jpg");
     border-top: none;
 }
 

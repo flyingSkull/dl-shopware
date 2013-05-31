@@ -22,11 +22,10 @@
     width: 170px;
     margin-bottom: 5px;
 
-    -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-    -moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-    box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
-
 
 #content #left .categories li .submenu li a {
     padding: 5px 0px 5px 20px;
@@ -40,10 +39,11 @@
 }
 
 #content #left ul li {
-    border-color: transparent;
+    border: none;
+   /* border-color: transparent;
     border-right-style: none;
     border-right-width: 0px;
-    background-color: transparent;
+    background-color: transparent;*/
 }
 
 #content #left ul li a {
@@ -87,22 +87,51 @@
     border-color: transparent;
 }
 
-/** LEVEL 0 **/
+/* WEIBLEIN */
 
-#content #left .categories li.active.sub a.active {
+#content #left .categories li.w a {
+    background-color: #e54a4a;
+    border: none;
+}
+
+#content #left .categories li.w.active.sub a.active {
     background-color: #e54a4a;
     border: none;
     color: #fff;
 }
 
-#content #left .categories li a:hover {
+#content #left .categories li.w.active.sub a:hover {
     color: #e54a4a;
     font-weight: 700;
 }
 
-#content #left .categories li.active li.active a.flag {
+#content #left .categories li.w.active.sub li.active a.flag {
     border: 0px none;
     color: #e54a4a;
+}
+
+/* MÄNNLEIN */
+
+#content #left .categories li.m a{
+    background-color: #79c6a2;
+    border: none;
+
+}
+
+#content #left .categories li.m.active.sub a.active {
+    background-color: #79c6a2;
+    border: none;
+    color: #fff;
+}
+
+#content #left .categories li.m.active.sub.m a:hover {
+    color: #79c6a2;
+    font-weight: 700;
+}
+
+#content #left .categories li.m.active.sub.m li.active a.flag {
+    border: 0px none;
+    color: #79c6a2;
 }
 
 /** LEVEL 1 **/
@@ -114,8 +143,21 @@
 }
 
 /** FILTER **/
-#content #left  .headingbox_nobg.filter_properties {border: none; background: #fff;}
+#content #left  .headingbox_nobg.filter_properties {
+    border: none;
+    background: #fff;
+}
 
-div.supplier_filter, div#hersteller_filter span {background: none; border: none;}
-#content #left .filter_properties .supplier_filter {width: 170px;}
-#content #left .filter_properties .supplier_filter div {border:none;width:160px;}
+div.supplier_filter, div#hersteller_filter span {
+    background: none;
+    border: none;
+}
+
+#content #left .filter_properties .supplier_filter {
+    width: 170px;
+}
+
+#content #left .filter_properties .supplier_filter div {
+    border: none;
+    width: 160px;
+}

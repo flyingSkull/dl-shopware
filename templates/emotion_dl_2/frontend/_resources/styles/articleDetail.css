@@ -43,7 +43,19 @@
 
 #detail .right {
     width: 570px;
+    min-height: 400px;
 }
+
+#detail .left {
+    min-height: 400px;
+}
+
+
+#detail #detailbox #detailbox_middle {
+    margin: 0px 50px 0px 30px;
+    width: 200px;
+}
+
 
 /* Artikel-switcher */
 
