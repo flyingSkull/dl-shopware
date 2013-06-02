@@ -106,7 +106,7 @@ body .my_options a, .my_options .service {
 
 #header #logo {
     z-index: 200;
-    top: 17px;
+    top: 5px;
 }
 
 #header #logo a {

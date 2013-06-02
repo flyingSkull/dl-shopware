@@ -14,7 +14,7 @@
 				</div>
 			{/if}
 
-            <a id="zoom1" href="{$sArticle.image.src.6}" title="{if $sArticle.image.res.description}{$sArticle.image.res.description}{else}{$sArticle.articleName}{/if}" {if {config name=sUSEZOOMPLUS}}class="cloud-zoom"{/if} rel="lightbox[{$sArticle.ordernumber}]">
+            <a id="zoom1" href="{$sArticle.image.src.7}" title="{if $sArticle.image.res.description}{$sArticle.image.res.description}{else}{$sArticle.articleName}{/if}" {if {config name=sUSEZOOMPLUS}}class="cloud-zoom"{/if} rel="lightbox[{$sArticle.ordernumber}]">
 				<img src="{$sArticle.image.src.4}" alt="{$sArticle.articleName}" title="{if $sArticle.image.res.description}{$sArticle.image.res.description}{else}{$sArticle.articleName}{/if}" />
 			</a>
 	    {/block}
