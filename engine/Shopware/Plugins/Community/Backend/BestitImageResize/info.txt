@@ -1,0 +1,6 @@
+Produktaktivierung: http://activate.bestit-online.de
+Website: http://www.bestit-online.de
+Installationsanleitung: http://www.bestit-online.de/produkte/vorschaubilder-neu-generieren/
+
+Beschreibung:
+Mit Vorschaubilder neu generieren können Sie nachträglich die Größe der Vorschaubilder anpassen.
