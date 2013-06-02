@@ -72,7 +72,7 @@
 
 </div>
 
-<div id="header-bottom"></div>
+{*<div id="header-bottom"></div>*}
 
 <div id="wrapper">
     <div class="wrap_top"></div>

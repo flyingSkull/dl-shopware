@@ -29,18 +29,7 @@
         <div class="mask">
 
             {* Description *}
-            {block name='frontend_listing_box_article_description'}
-            {*    {if $sTemplate eq 'listing-1col'}
-                    {assign var=size value=270}
-                    {else}
-                    {assign var=size value=60}
-                {/if}
-            <p class="desc">
-                {if $sTemplate}
-                        {$sArticle.description_long|strip_tags|truncate:$size}
-                    {/if}
-            </p>*}
-            {/block}
+            {block name='frontend_listing_box_article_description'} {/block}
 
             {* Article name *}
             {block name='frontend_listing_box_article_name'}

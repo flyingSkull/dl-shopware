@@ -16,7 +16,13 @@
     width: 170px;
 }
 
+#content #left ul li.active li.active {
+    background: #ffffff;
+    border: 0 none;
+}
+
 #content #left .categories li .submenu li {
+    background: none;
     background-color: #ffffff;
     border: 0px none;
     width: 170px;
@@ -25,6 +31,7 @@
     -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+
 }
 
 #content #left .categories li .submenu li a {
@@ -47,7 +54,7 @@
 }
 
 #content #left ul li a {
-    color: #3e3e3e;
+    color: #FFF;
     font-size: 12px;
 }
 
@@ -115,7 +122,6 @@
 #content #left .categories li.m a{
     background-color: #79c6a2;
     border: none;
-
 }
 
 #content #left .categories li.m.active.sub a.active {

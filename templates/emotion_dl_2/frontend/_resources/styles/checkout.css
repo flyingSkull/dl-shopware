@@ -1,0 +1,64 @@
+.container_20 #basket {
+    background: #F6F3EA;
+    top: -5px;
+    margin: 0 0 0;
+    border: 1px dashed #E0DCCE;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.container_20 #basket .table {
+    width: 976px;
+    padding: 10px;
+}
+
+#basket .cart .table_foot #aggregation_left {
+    border-top: none;
+}
+
+#basket .cart .table_foot #aggregation {
+    border-top: none;
+}
+
+#basket .actions {
+    height: 40px;
+    padding: 10px;
+}
+
+#basket .actions a.button-right {
+    position: absolute;
+    right: 10px;
+}
+
+
+/* STEPBOX */
+
+div.step_box {
+    background: none;
+    margin: 10px 0 0;
+    width: 998px;
+    height: 42px;
+}
+
+div.step_box ul li.active {
+    background: #F6F3EA;
+    border-top: 1px dashed #E0DCCE;
+    border-right: 1px dashed #E0DCCE;
+    border-left: 1px dashed #E0DCCE;
+    border-radius: 5px 5px 5px 5px;
+}
+
+div.step_box ul li {
+    background: #F6F3EA;
+    margin-left: 0;
+    margin-right: 0;
+    border:none;
+}
+
+/* CONFIRM */
+#content #confirm {
+    background: #F6F3EA;
+    border-top: 1px dashed #E0DCCE;
+    border-right: 1px dashed #E0DCCE;
+    border-left: 1px dashed #E0DCCE;
+    border-radius: 5px 5px 5px 5px;
+}
