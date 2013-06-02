@@ -70,7 +70,7 @@ div.listing {
     font-size: 15px;
     padding-top: 20px;
     padding-bottom: 20px;
-    background: rgba(0, 0, 0, 0.8);
+    background: #e54a4a;
     margin: 20px 0 0 0;
 
     opacity: 0;
@@ -84,11 +84,10 @@ div.listing {
 }
 
 .artbox p.price {
-    color: #000;
     text-align: center;
     position: relative;
     font-size: 22px;
-    color: #b40700;
+    color: #e54a4a;
     padding-top: 30px;
     padding-bottom: 30px;
     top: 0px;
@@ -145,3 +144,15 @@ div.listing {
     background-color: #b40700;
 }*/
 
+/** LISTING-ACTIONS **/
+
+.listing_actions a.on, .listing_actions.bottom a.on {
+    background-color: #e54a4a;
+    color: rgb(255, 255, 255);
+    border-color: rgb(189, 62, 0);
+}
+
+.listing_actions a.perpage:hover, .listing_actions.bottom a.perpage:hover, .listing_actions.bottom a.navi:hover, .listing_actions a.navi:hover {
+    border-color: #e54a4a;
+    color: #e54a4a;
+}
