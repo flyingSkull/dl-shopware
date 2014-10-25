@@ -1,7 +1,7 @@
 <?php
 /**
  * Shopware 4.0
- * Copyright © 2012 shopware AG
+ * Copyright © 2013 shopware AG
  *
  * According to our dual licensing model, this program can be used either
  * under the terms of the GNU Affero General Public License, version 3,
@@ -20,23 +20,18 @@
  * The licensing of the program under the AGPLv3 does not imply a
  * trademark license. Therefore any rights, title and interest in
  * our trademarks remain entirely with us.
- *
- * @category   Shopware
- * @package    Shopware_Core
- * @subpackage Class
- * @copyright  Copyright (c) 2012, shopware AG (http://www.shopware.de)
- * @version    $Id$
- * @author     Heiner Lohaus
- * @author     $Author$
  */
 
 /**
- * Deprecated Shopware Class that handle url rewrites
+ * Deprecated Shopware Class that handles url rewrites
  *
- * todo@all: Documentation
+ * @category  Shopware
+ * @package   Shopware\Core
+ * @copyright Copyright (c) 2013, shopware AG (http://www.shopware.de)
  */
 class sRewriteTable
 {
+
     public $sSYSTEM;
 
     /**
@@ -65,9 +60,44 @@ class sRewriteTable
     protected $blogRepository;
 
     /**
-     * @var Shopware\Models\Category\Category
+     * Prepared update PDOStatement for the s_core_rewrite_urls table.
+     * @var PDOStatement
      */
-    protected $baseCategory;
+    protected $preparedUpdate = null;
+
+
+    /**
+     * Prepared insert PDOStatement for the s_core_rewrite_urls table.
+     * @var PDOStatement
+     */
+    protected $preparedInsert = null;
+
+    /**
+     * Getter function of the prepared insert PDOStatement
+     * @return null|PDOStatement
+     */
+    protected function getPreparedInsert() {
+        if ($this->preparedInsert === null) {
+            $this->preparedInsert = Shopware()->Db()->prepare('
+                INSERT IGNORE INTO s_core_rewrite_urls (org_path, path, main, subshopID)
+                VALUES (?, ?, 1, ?)
+                ON DUPLICATE KEY UPDATE main=1
+            ');
+        }
+        return $this->preparedInsert;
+    }
+
+
+    /**
+     * Getter function of the prepared update PDOStatement
+     * @return null|PDOStatement
+     */
+    protected function getPreparedUpdate() {
+        if ($this->preparedUpdate === null) {
+            $this->preparedUpdate = Shopware()->Db()->prepare('UPDATE s_core_rewrite_urls SET main=0 WHERE org_path=? AND path!=? AND subshopID=?');
+        }
+        return $this->preparedUpdate;
+    }
 
     /**
      * Class constructor.
@@ -77,9 +107,15 @@ class sRewriteTable
         $this->manager = Shopware()->Models();
         $this->repository = $this->manager->getRepository('Shopware\Models\Category\Category');
         $this->blogRepository = $this->manager->getRepository('Shopware\Models\Blog\Blog');
-        $this->baseCategory = Shopware()->Shop()->getCategory();
     }
 
+    /**
+     * Replace special chars with a URL compliant representation
+     *
+     * @param $path
+     * @param bool $remove_ds
+     * @return string
+     */
     public function sCleanupPath($path, $remove_ds = true)
     {
         $replace = array(
@@ -123,21 +159,38 @@ class sRewriteTable
         return trim($path, '-');
     }
 
-    public function sCreateRewriteTable($last_update)
+    public function baseSetup()
     {
         @ini_set('memory_limit', '512M');
         @set_time_limit(0);
 
-        $this->template = $this->sSYSTEM->sSMARTY;
-        $this->template->registerPlugin(
-            Smarty::PLUGIN_FUNCTION, 'sCategoryPath',
-            array($this, 'sSmartyCategoryPath')
-        );
+        $this->template = Shopware()->Template();
+
+        $keys = array_keys($this->template->registered_plugins['function']);
+        if (!(in_array('sCategoryPath', $keys))) {
+            $this->template->registerPlugin(
+                Smarty::PLUGIN_FUNCTION, 'sCategoryPath',
+                array($this, 'sSmartyCategoryPath')
+            );
+        }
+
         $this->data = $this->template->createData();
 
         $this->data->assign('sConfig', $this->sSYSTEM->sCONFIG);
         $this->data->assign('sRouter', $this);
-        $this->data->assign('sCategoryStart', $this->baseCategory->getId());
+        $this->data->assign('sCategoryStart', Shopware()->Shop()->getCategory()->getId());
+    }
+
+    /**
+     * Main method for re-creating the rewrite table. Triggers all other (more specific) methods
+     *
+     * @param $last_update
+     * @return mixed
+     */
+    public function sCreateRewriteTable($last_update)
+    {
+
+        $this->baseSetup();
 
         $this->sCreateRewriteTableCleanup();
         $this->sCreateRewriteTableStatic();
@@ -150,8 +203,12 @@ class sRewriteTable
         return $last_update;
     }
 
-    protected function sCreateRewriteTableCleanup()
+    /**
+     * Cleanup the rewrite table from non-existing resources.
+     */
+    public function sCreateRewriteTableCleanup()
     {
+        // Delete CMS / campaigns
         $sql = "
 			DELETE ru FROM s_core_rewrite_urls ru
 			LEFT JOIN s_cms_static cs
@@ -173,6 +230,7 @@ class sRewriteTable
 		";
         $this->sSYSTEM->sDB_CONNECTION->Execute($sql);
 
+        // delete non-existing blog categories from rewrite table
         $sql = "
 			DELETE ru FROM s_core_rewrite_urls ru
 			LEFT JOIN s_categories c
@@ -183,6 +241,7 @@ class sRewriteTable
 		";
         $this->sSYSTEM->sDB_CONNECTION->Execute($sql);
 
+        // delete non-existing categories
         $sql = "
 			DELETE ru FROM s_core_rewrite_urls ru
 			LEFT JOIN s_categories c
@@ -194,6 +253,7 @@ class sRewriteTable
 		";
         $this->sSYSTEM->sDB_CONNECTION->Execute($sql);
 
+        // delete non-existing articles
         $sql = "
 			DELETE ru FROM s_core_rewrite_urls ru
 			LEFT JOIN s_articles a
@@ -204,43 +264,47 @@ class sRewriteTable
         $this->sSYSTEM->sDB_CONNECTION->Execute($sql);
     }
 
-    protected function sCreateRewriteTableStatic()
+    /**
+     * Create the static rewrite rules from config
+     */
+    public function sCreateRewriteTableStatic()
     {
         if (empty($this->sSYSTEM->sCONFIG['sSEOSTATICURLS'])) {
             return;
         }
         $static = array();
         $urls = $this->template->fetch('string:' . $this->sSYSTEM->sCONFIG['sSEOSTATICURLS'], $this->data);
+        
+        
         if (!empty($urls))
         foreach (explode("\n", $urls) as $url) {
             list($key, $value) = explode(',', trim($url));
             if (empty($key) || empty($value)) continue;
             $static[$key] = $value;
         }
+
         foreach ($static as $org_path => $name) {
             $path = $this->sCleanupPath($name, false);
             $this->sInsertUrl($org_path, $path);
         }
     }
 
-    protected function sCreateRewriteTableCategories()
+    /**
+     * Create rewrite rules for categories
+     *
+     * Default, deprecated method which updates rewrite URLs depending on the current shop
+     */
+    public function sCreateRewriteTableCategories($offset=null, $limit=null)
     {
         if (empty(Shopware()->Config()->routerCategoryTemplate)) {
             return;
         }
 
-        $parentId = $this->baseCategory->getId();
-        $result = $this->repository
-            ->getActiveChildrenByIdQuery($parentId)
-            ->getArrayResult();
+        $parentId = Shopware()->Shop()->getCategory()->getId();
+        $categories = $this->repository->getActiveChildrenList($parentId);
 
-        $categories = array();
-        foreach($result as $category){
-            $categories[$category['category']['id']] = array_merge($category['category'], array(
-                'description' => $category['category']['name'],
-                'childrenCount' => $category['childrenCount'],
-                'articleCount' => $category['articleCount']
-            ));
+        if (isset($offset) && isset($limit)) {
+            $categories = array_slice($categories, $offset, $limit);
         }
 
         $template = 'string:' . Shopware()->Config()->routerCategoryTemplate;
@@ -265,7 +329,14 @@ class sRewriteTable
         }
     }
 
-    protected function sCreateRewriteTableArticles($last_update)
+    /**
+     * Create rewrite rules for articles
+     *
+     * @param $last_update
+     * @param $limit
+     * @return mixed
+     */
+    public function sCreateRewriteTableArticles($last_update, $limit=1000)
     {
         if (empty($this->sSYSTEM->sCONFIG['sROUTERARTICLETEMPLATE'])) {
             return $last_update;
@@ -274,37 +345,12 @@ class sRewriteTable
         $sql = 'UPDATE `s_articles` SET `changetime`= NOW() WHERE `changetime`=?';
         Shopware()->Db()->query($sql, array('0000-00-00 00:00:00'));
 
-        $sql = "
-			SELECT a.*, IF(atr.name IS NULL OR atr.name='', a.name, atr.name) as name,
-			    d.ordernumber, d.suppliernumber, s.name as supplier, datum as date, d.releasedate, changetime as changed,
-				at.attr1, at.attr2, at.attr3, at.attr4, at.attr5, at.attr6, at.attr7, at.attr8, at.attr9, at.attr10,
-				at.attr11, at.attr12, at.attr13, at.attr14, at.attr15, at.attr16, at.attr17, at.attr18, at.attr19, at.attr20
-			FROM s_categories c, s_categories c2, s_articles_categories ac, s_articles a
-			JOIN s_articles_details d
-			ON d.id = a.main_detail_id
-			LEFT JOIN s_articles_attributes at
-			ON at.articledetailsID=d.id
-			LEFT JOIN s_articles_translations atr
-			ON atr.articleID=a.id
-			AND atr.languageID=?
-			LEFT JOIN s_articles_supplier s
-			ON s.id=a.supplierID
-			WHERE c.id=?
-            AND c2.active=1
-            AND c2.left >= c.left
-            AND c2.right <= c.right
-            AND ac.articleID=a.id
-            AND ac.categoryID=c2.id
+        $sql = $this->getSeoArticleQuery();
+        $sql = Shopware()->Db()->limit($sql, $limit);
 
-            AND a.active=1
-			AND a.changetime > ?
-			GROUP BY a.id
-			ORDER BY a.changetime, a.id
-			LIMIT 1000
-		";
         $result = $this->sSYSTEM->sDB_CONNECTION->Execute($sql, array(
-            Shopware()->Shop()->getId(),
             Shopware()->Shop()->get('parentID'),
+            Shopware()->Shop()->getId(),
             $last_update
         ));
 
@@ -329,7 +375,50 @@ class sRewriteTable
         return $last_update;
     }
 
-    protected function sCreateRewriteTableBlog()
+    /**
+     * Helper function which returns the sql query for the seo articles.
+     * @return string
+     */
+    public function getSeoArticleQuery()
+    {
+        return "
+			SELECT a.*, IF(atr.name IS NULL OR atr.name='', a.name, atr.name) as name,
+			    d.ordernumber, d.suppliernumber, s.name as supplier, datum as date, d.releasedate, changetime as changed,
+				at.attr1, at.attr2, at.attr3, at.attr4, at.attr5, at.attr6, at.attr7, at.attr8, at.attr9, at.attr10,
+				at.attr11, at.attr12, at.attr13, at.attr14, at.attr15, at.attr16, at.attr17, at.attr18, at.attr19, at.attr20
+			FROM s_articles a
+
+            INNER JOIN s_articles_categories_ro ac
+                ON  ac.articleID = a.id
+                AND ac.categoryID = ?
+            INNER JOIN s_categories c
+                ON  c.id = ac.categoryID
+                AND c.active = 1
+
+			JOIN s_articles_details d
+			    ON d.id = a.main_detail_id
+
+			LEFT JOIN s_articles_attributes at
+			    ON at.articledetailsID=d.id
+
+			LEFT JOIN s_articles_translations atr
+			    ON atr.articleID=a.id
+			    AND atr.languageID=?
+
+			LEFT JOIN s_articles_supplier s
+			    ON s.id=a.supplierID
+
+			WHERE a.active=1
+			AND a.changetime > ?
+			GROUP BY a.id
+			ORDER BY a.changetime, a.id
+          ";
+    }
+
+    /**
+     * Create rewrite rules for blog articles
+     */
+    public function sCreateRewriteTableBlog($offset=null, $limit=null)
     {
         $query = $this->repository->getBlogCategoriesByParentQuery(Shopware()->Shop()->get('parentID'));
         $blogCategories = $query->getArrayResult();
@@ -341,8 +430,7 @@ class sRewriteTable
         }
 
         /** @var $repository \Shopware\Models\Blog\Repository */
-        $blogArticlesQuery = $this->blogRepository->getListQuery($blogCategoryIds);
-
+        $blogArticlesQuery = $this->blogRepository->getListQuery($blogCategoryIds, $offset, $limit);
         $blogArticlesQuery->setHydrationMode(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
         $blogArticles = $blogArticlesQuery->getArrayResult();
 
@@ -356,11 +444,14 @@ class sRewriteTable
         }
     }
 
-    protected function sCreateRewriteTableCampaigns()
+    /**
+     * Create emotion rewrite rules
+     */
+    public function sCreateRewriteTableCampaigns($offset=null, $limit=null)
     {
        $campaignsRepository = Shopware()->Models()->getRepository('Shopware\Models\Emotion\Emotion');
 
-       $campaigns = $campaignsRepository->getCampaigns();
+       $campaigns = $campaignsRepository->getCampaigns($offset, $limit);
        $campaigns = $campaigns->getQuery()->getArrayResult();
 
 
@@ -377,9 +468,16 @@ class sRewriteTable
        }
     }
 
-    protected function sCreateRewriteTableContent()
+    /**
+     * Create CMS rewrite rules
+     */
+    public function sCreateRewriteTableContent($offset=null, $limit=null)
     {
-        $sql = 'SELECT id, description as name FROM `s_emarketing_promotion_main`';
+        $sql = "SELECT id, description as name FROM `s_emarketing_promotion_main`";
+        if ($limit !== null) {
+            $sql = Shopware()->Db()->limit($sql, $limit, $offset);
+        }
+
         $result = $this->sSYSTEM->sDB_CONNECTION->Execute($sql);
         if ($result !== false) {
             while ($row = $result->FetchRow()) {
@@ -389,7 +487,10 @@ class sRewriteTable
             }
         }
 
-        $sql = 'SELECT id, name, ticket_typeID FROM `s_cms_support`';
+        $sql = "SELECT id, name, ticket_typeID FROM `s_cms_support`";
+        if ($limit !== null) {
+            $sql = Shopware()->Db()->limit($sql, $limit, $offset);
+        }
         $result = $this->sSYSTEM->sDB_CONNECTION->Execute($sql);
         if ($result !== false) {
             while ($row = $result->FetchRow()) {
@@ -399,7 +500,10 @@ class sRewriteTable
             }
         }
 
-        $sql = 'SELECT id, description as name FROM `s_cms_static` WHERE link=\'\'';
+        $sql = "SELECT id, description as name FROM `s_cms_static` WHERE link=''";
+        if ($limit !== null) {
+            $sql = Shopware()->Db()->limit($sql, $limit, $offset);
+        }
         $result = $this->sSYSTEM->sDB_CONNECTION->Execute($sql);
         if ($result !== false) {
             while ($row = $result->FetchRow()) {
@@ -409,7 +513,10 @@ class sRewriteTable
             }
         }
 
-        $sql = 'SELECT id, description as name FROM `s_cms_groups`';
+        $sql = "SELECT id, description as name FROM `s_cms_groups`";
+        if ($limit !== null) {
+            $sql = Shopware()->Db()->limit($sql, $limit, $offset);
+        }
         $result = $this->sSYSTEM->sDB_CONNECTION->Execute($sql);
         if ($result !== false) {
             while ($row = $result->FetchRow()) {
@@ -420,6 +527,13 @@ class sRewriteTable
         }
     }
 
+    /**
+     * Updates / create a single rewrite URL
+     *
+     * @param $org_path
+     * @param $path
+     * @return bool
+     */
     public function sInsertUrl($org_path, $path)
     {
         $path = trim($path);
@@ -427,15 +541,24 @@ class sRewriteTable
         if (empty($path) || empty($org_path)) {
             return false;
         }
-        $sql_rewrite = 'UPDATE s_core_rewrite_urls SET main=0 WHERE org_path=? AND path!=? AND subshopID=?';
-        $this->sSYSTEM->sDB_CONNECTION->Execute($sql_rewrite, array($org_path, $path, Shopware()->Shop()->getId()));
-        $sql_rewrite = '
-			INSERT IGNORE INTO s_core_rewrite_urls (org_path, path, main, subshopID)
-			VALUES (?, ?, 1, ?)
-			ON DUPLICATE KEY UPDATE main=1
-		';
-        $this->sSYSTEM->sDB_CONNECTION->Execute($sql_rewrite, array($org_path, $path, Shopware()->Shop()->getId()));
+        $update = $this->getPreparedUpdate();
+
+
+        $update->execute(array(
+            $org_path,
+            $path,
+            Shopware()->Shop()->getId()
+        ));
+
+
+        $insert = $this->getPreparedInsert();
+        $insert->execute(array(
+            $org_path,
+            $path,
+            Shopware()->Shop()->getId()
+        ));
     }
+
 
     public function sSmartyCategoryPath($params)
     {
@@ -455,8 +578,9 @@ class sRewriteTable
     public function sCategoryPath($category)
     {
         $parts = $this->repository->getPathById($category, 'name');
-        $level = $this->baseCategory->getLevel() + 1;
+        $level = Shopware()->Shop()->getCategory()->getLevel();
         $parts = array_slice($parts, $level);
+
         return $parts;
     }
 
@@ -467,16 +591,19 @@ class sRewriteTable
      */
     public function sCategoryPathByArticleId($articleId, $parentId = null)
     {
-        //if (empty($parentId)) {
-        //    $parentId = $this->baseCategory->getId();
-        //}
-        //$categoryId = $this->repository
-        //    ->getActiveByArticleIdQuery($articleId, $categoryId)
-        //    ->setMaxResults(1)
-        //    ->getOneOrNullResult();
         $categoryId = Shopware()->Modules()->Categories()->sGetCategoryIdByArticleId(
-            $articleId, $parentId
+            $articleId,
+            $parentId
         );
-        return $categoryId !== null ? $this->sCategoryPath($categoryId) : null;
+
+        return empty($categoryId) ? null : $this->sCategoryPath($categoryId);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getData()
+    {
+        return $this->data;
     }
 }
